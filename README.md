@@ -24,8 +24,7 @@ See a diagram of the available entities and their relationships. https://docs.go
 NOTE: Remember that a many-to-many relationship requires a join table, so the entities in the diagram may be missing some actual tables. Explore the tables in your database.
 
 ## GitHub repo
-1. Create a GitHub repo named “prime-group-joins”. 
-2. Create a file called “joins-solution.sql”. You will store your responses to the exercise questions here. NOTE: This is merely a text file with a .sql extension.
+1. Create a file called “joins-solution.sql”. You will store your responses to the exercise questions here. NOTE: This is merely a text file with a .sql extension.
 
 # Exercise
 
