@@ -21,7 +21,6 @@ We are creating a database with a multiple tables and records. Please follow the
 ## Entity Relationship Diagram (ERD)
 See a diagram of the available entities and their relationships. https://docs.google.com/drawings/d/1eA7JJtCVDL0K45aVzbxIUrgWXHoKY5vv1jAhssC2c1A/edit
 
-NOTE: Remember that a many-to-many relationship requires a join table, so the entities in the diagram may be missing some actual tables. Explore the tables in your database.
 
 ## GitHub repo
 1. Create a file called “joins-solution.sql”. You will store your responses to the exercise questions here. NOTE: This is merely a text file with a .sql extension.
@@ -43,7 +42,7 @@ SELECT * FROM customers;
 
 ## Tasks
 1. Get all customers and their addresses.
-2. Get all orders and their line items (orders, quantity and product).
+2. Get all orders and their line items (order id, order date, quantity, and product description).
 3. Which warehouses have cheetos?
 4. Which warehouses have diet pepsi?
 5. Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
