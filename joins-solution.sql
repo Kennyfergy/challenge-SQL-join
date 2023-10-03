@@ -44,13 +44,25 @@ WHERE
     p.description = 'diet pepsi' AND wp.on_hand > 0;
 
 --5. Get the number of orders for each customer. NOTE: It is OK if those without orders are not included in results.
-
-
+SELECT 
+    c.first_name,
+    c.last_name,
+    COUNT(o.id) AS number_of_orders
+FROM 
+    customers c
+LEFT JOIN 
+    addresses a ON c.id = a.customer_id
+LEFT JOIN 
+    orders o ON a.id = o.address_id
+GROUP BY 
+    c.id, c.first_name, c.last_name
+ORDER BY 
+    number_of_orders DESC;
 --6. How many customers do we have?
-
+SELECT Count(*) from customers;
 
 --7. How many products do we carry?
-
+SELECT Count(*) from products;
 
 --8. What is the total available on-hand quantity of diet pepsi?
 
