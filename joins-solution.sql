@@ -54,7 +54,7 @@ LEFT JOIN
     addresses a ON c.id = a.customer_id
 LEFT JOIN 
     orders o ON a.id = o.address_id
-GROUP BY 
+GROUP BY  
     c.id, c.first_name, c.last_name
 ORDER BY 
     number_of_orders DESC;
@@ -65,7 +65,14 @@ SELECT Count(*) from customers;
 SELECT Count(*) from products;
 
 --8. What is the total available on-hand quantity of diet pepsi?
-
+    SELECT 
+    SUM(wp.on_hand) AS total_available_quantity
+FROM 
+    products p
+JOIN 
+    warehouse_product wp ON p.id = wp.product_id
+WHERE 
+    p.description = 'diet pepsi';
 
 
 ## Stretch
