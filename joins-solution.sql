@@ -77,9 +77,56 @@ WHERE
 
 ## Stretch
 --9. How much was the total cost for each order?
-
+SELECT 
+    o.id AS order_id,
+    SUM(li.quantity * p.unit_price) AS total_cost
+FROM 
+    orders o
+JOIN 
+    line_items li ON o.id = li.order_id
+JOIN 
+    products p ON li.product_id = p.id
+GROUP BY 
+    o.id
+ORDER BY 
+    total_cost DESC;
 
 --10. How much has each customer spent in total?
-
+    SELECT 
+    c.first_name,
+    c.last_name,
+    SUM(li.quantity * p.unit_price) AS total_spent
+FROM 
+    customers c
+JOIN 
+    addresses a ON c.id = a.customer_id
+JOIN 
+    orders o ON a.id = o.address_id
+JOIN 
+    line_items li ON o.id = li.order_id
+JOIN 
+    products p ON li.product_id = p.id
+GROUP BY 
+    c.id, c.first_name, c.last_name
+ORDER BY 
+    total_spent DESC;
 
 --11. How much has each customer spent in total? Customers who have spent $0 should still show up in the table. It should say 0, not NULL (research coalesce).
+SELECT 
+    c.first_name,
+    c.last_name,
+    COALESCE(SUM(li.quantity * p.unit_price), 0) AS total_spent
+FROM 
+    customers c
+LEFT JOIN 
+    addresses a ON c.id = a.customer_id
+LEFT JOIN 
+    orders o ON a.id = o.address_id
+LEFT JOIN 
+    line_items li ON o.id = li.order_id
+LEFT JOIN 
+    products p ON li.product_id = p.id
+GROUP BY 
+    c.id, c.first_name, c.last_name
+ORDER BY 
+    total_spent DESC;
