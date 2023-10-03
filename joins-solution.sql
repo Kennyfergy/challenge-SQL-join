@@ -113,20 +113,20 @@ ORDER BY
 
 --11. How much has each customer spent in total? Customers who have spent $0 should still show up in the table. It should say 0, not NULL (research coalesce).
 SELECT 
-    c.first_name,
+    c.first_name, --select first name and last name from customers table then calculate total spent by each
     c.last_name,
-    COALESCE(SUM(li.quantity * p.unit_price), 0) AS total_spent
+    COALESCE(SUM(li.quantity * p.unit_price), 0) AS total_spent --coalesce function replaces null with 0
 FROM 
-    customers c
+    customers c --select from customers table using c as an alias
 LEFT JOIN 
-    addresses a ON c.id = a.customer_id
+    addresses a ON c.id = a.customer_id --addresses a identifies addresses linked to each customer
 LEFT JOIN 
-    orders o ON a.id = o.address_id
+    orders o ON a.id = o.address_id --orders o is joined on address_id to find orders linked to each address
 LEFT JOIN 
-    line_items li ON o.id = li.order_id
+    line_items li ON o.id = li.order_id --line_items li is joined on order_id to find line items linked to each other
 LEFT JOIN 
-    products p ON li.product_id = p.id
+    products p ON li.product_id = p.id --products p is joined on product_id to get details of products in the line items
 GROUP BY 
-    c.id, c.first_name, c.last_name
+    c.id, c.first_name, c.last_name --grouping the results by customer id, first name, last name, enabling the sum function in the select clause to compute the total per customer
 ORDER BY 
     total_spent DESC;
